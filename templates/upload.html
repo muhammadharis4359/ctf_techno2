@@ -1,0 +1,93 @@
+<!-- templates/upload.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>StoreX Vendor Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .upload-box {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        input[type="file"] {
+            margin: 20px 0;
+            padding: 10px;
+            border: 2px dashed #007bff;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 12px 30px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #218838;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+    
+    <div class="upload-box">
+        <h2>🔐 Vendor Upload Panel</h2>
+        
+        <div class="warning">
+            <strong>⚠️ Authorized Personnel Only</strong><br>
+            This interface is restricted to approved vendor accounts. All uploads are automatically synchronized with internal systems.
+        </div>
+        
+        <p>Upload product assets, documentation, or vendor materials. Files are automatically processed and distributed to internal systems.</p>
+        
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <br>
+            <button type="submit">📤 Upload & Sync</button>
+        </form>
+        
+        <div style="margin-top: 30px; padding: 15px; background: #f8f9fa; border-radius: 4px; font-size: 13px; color: #6c757d;">
+            <strong>Technical Note:</strong><br>
+            • Files are not stored locally<br>
+            • Automatic sync with internal databases<br>
+            • Triggers downstream authentication flows<br>
+            • Legacy OTP system may activate after upload
+        </div>
+    </div>
+    
+    <!-- TODO: Remove this comment before production -->
+    <!-- Direct upload path: /uploads/ -->
+    <!-- Internal systems auto-trust this folder -->
+    <!-- OTP verification bypassed for internal sync -->
+    
+    <script>
+        console.log("[StoreX] Vendor upload interface loaded");
+        console.log("[StoreX] Auto-sync enabled: true");
+        console.log("[StoreX] Internal verification: pending");
+    </script>
+</body>
+</html>

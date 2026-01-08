@@ -1,0 +1,115 @@
+<!-- templates/dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>StoreX Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .nav {
+            background: #007bff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .stage-indicator {
+            background: #28a745;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        .restricted {
+            color: #6c757d;
+            font-style: italic;
+        }
+        .unlocked {
+            color: #28a745;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏪 StoreX Internal Dashboard</h1>
+        <p>Welcome, {{ session.get('email', 'Employee') }}</p>
+    </div>
+    
+    <div class="nav">
+        <a href="/products">Products</a>
+        <a href="/dashboard">Dashboard</a>
+        {% if session.get('internal_sync') %}
+        <a href="/otp">OTP Verification</a>
+        {% endif %}
+        <a href="/logout" style="float: right;">Logout</a>
+    </div>
+    
+    <div class="content">
+        <div class="stage-indicator">
+            Stage {{ stage }} / 4 - Keep exploring!
+        </div>
+        
+        <h2>System Status</h2>
+        <ul>
+            <li>Orders Management: <span class="restricted">Restricted</span></li>
+            <li>Financial Reports: <span class="restricted">Restricted</span></li>
+            <li>Product Catalog: <span class="unlocked">✓ Available</span></li>
+            <li>Vendor Portal: <span class="restricted">Restricted</span></li>
+            {% if session.get('idor_found') %}
+            <li>Vendor Upload: <span class="unlocked">✓ Unlocked</span> - <a href="/upload">Access</a></li>
+            {% endif %}
+            {% if session.get('internal_sync') %}
+            <li>OTP Module: <span class="unlocked">✓ Active</span> - <a href="/otp">Verify</a></li>
+            {% endif %}
+        </ul>
+        
+        {% if stage == 1 %}
+        <div style="background: #fff3cd; padding: 15px; border-radius: 4px; margin-top: 20px;">
+            <strong>💡 Next Step:</strong> Explore the product catalog. Some items might be hidden from the regular interface.
+        </div>
+        {% elif stage == 2 %}
+        <div style="background: #d1ecf1; padding: 15px; border-radius: 4px; margin-top: 20px;">
+            <strong>🔓 Vendor Access Granted:</strong> You've discovered internal resources. Use the upload interface to proceed.
+        </div>
+        {% elif stage == 3 %}
+        <div style="background: #d4edda; padding: 15px; border-radius: 4px; margin-top: 20px;">
+            <strong>⚡ Internal Sync Complete:</strong> OTP verification module is now accessible. 
+        </div>
+        {% endif %}
+    </div>
+    
+    <script>
+        console.log("[StoreX] Dashboard v2.3.1 initialized");
+        console.log("[StoreX] Internal APIs responding on /api/*");
+        console.log("[StoreX] Legacy product endpoints still active...");
+        console.log("[StoreX] Session stage: {{ stage }}");
+    </script>
+</body>
+</html>

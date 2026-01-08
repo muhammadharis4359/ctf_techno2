@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>StoreX OTP Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .otp-box {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .info {
+            background: #d1ecf1;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        input {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            text-align: center;
+            border: 2px solid #007bff;
+            border-radius: 4px;
+            box-sizing: border-box;
+            letter-spacing: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .error {
+            color: #dc3545;
+            text-align: center;
+            margin-top: 15px;
+        }
+        .hint {
+            font-size: 12px;
+            color: #6c757d;
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="otp-box">
+        <h2>🔐 OTP Verification Required</h2>
+        
+        <div class="info">
+            <p><strong>Security Check</strong></p>
+            <p>A one-time password has been sent to your registered email address.</p>
+        </div>
+        
+        <form method="POST" id="otpForm">
+            <input name="otp" placeholder="000000" maxlength="6" pattern="\d{6}" required>
+            <button type="submit">Verify OTP</button>
+        </form>
+        
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+        
+        <div class="hint">
+            <!-- OTP is mandatory for verification -->
+            <!-- Or is it? Check the request carefully... -->
+            <!-- What if the parameter doesn't exist at all? -->
+        </div>
+    </div>
+    
+    <script>
+        console.log("[StoreX] OTP verification page loaded");
+        console.log("[StoreX] Expected parameter: 'otp'");
+        console.log("[StoreX] Validation: server-side");
+        console.log("[StoreX] Hint: What happens if the server doesn't receive what it expects?");
+        
+        // Log form data for debugging
+        document.getElementById('otpForm').addEventListener('submit', function(e) {
+            console.log("[StoreX] Submitting OTP form...");
+            console.log("[StoreX] Form data:", new FormData(this));
+        });
+    </script>
+</body>
+</html>

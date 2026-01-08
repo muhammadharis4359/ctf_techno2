@@ -1,0 +1,75 @@
+!-- templates/products.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>StoreX Products</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .product-list {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .product-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s;
+        }
+        .product-item:hover {
+            background: #f8f9fa;
+        }
+        .product-item a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .product-item a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .hint-box {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+    
+    <div class="product-list">
+        <h2>Product Catalog</h2>
+        <p>Browse our available products</p>
+        
+        {% for p in items %}
+        <div class="product-item">
+            <a href="/product?id={{p[0]}}">{{ p[1] }}</a>
+        </div>
+        {% endfor %}
+        
+        <div class="hint-box">
+            💡 <strong>Tip:</strong> Product IDs are sequential. The catalog shows ID 1, 2, and 4. What about ID 3?
+        </div>
+    </div>
+    
+    <script>
+        console.log("[StoreX] Product catalog loaded");
+        console.log("[StoreX] Visible products: {{ items|length }}");
+        console.log("[StoreX] Total products in system: ???");
+    </script>
+</body>
+</html>
