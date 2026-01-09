@@ -1,79 +1,140 @@
-<!-- templates/product_detail.html -->
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>StoreX Product</title>
+    <title>Whitecap Bay - Cargo Details</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Georgia', serif;
+            min-height: 100vh;
+            background: url('https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=1920&q=80') center/cover fixed;
+            position: relative;
+            padding: 20px;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(10,77,104,0.88) 0%, rgba(30,58,82,0.92) 100%);
+            z-index: 1;
+        }
+        .container {
+            position: relative;
+            z-index: 2;
             max-width: 900px;
             margin: 0 auto;
-            padding: 20px;
-            background: #f8f9fa;
         }
         .product-detail {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.98);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border: 3px solid #2c7da0;
+            color: #0a4d68;
         }
         .back-link {
             display: inline-block;
             margin-bottom: 20px;
-            color: #007bff;
+            color: #e8f4f8;
             text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, rgba(44,125,160,0.9) 0%, rgba(10,77,104,0.9) 100%);
+            border-radius: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
-        .alert {
-            background: #f8d7da;
-            border: 1px solid #f5c6cb;
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(44,125,160,0.5);
+        }
+        .siren-alert {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            border: 3px solid #dc3545;
             color: #721c24;
-            padding: 20px;
-            border-radius: 4px;
-            margin-top: 20px;
+            padding: 35px;
+            border-radius: 15px;
+            margin-top: 25px;
+            box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        .siren-alert::before {
+            content: '🧜‍♀️';
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 60px;
+            opacity: 0.2;
         }
         .btn {
             display: inline-block;
-            padding: 12px 24px;
-            background: #dc3545;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
             color: white;
             text-decoration: none;
-            border-radius: 4px;
-            margin-top: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
         }
         .btn:hover {
-            background: #c82333;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.5);
+        }
+        .treasure-image {
+            width: 100%;
+            height: 300px;
+            background: url('https://images.unsplash.com/photo-1610375461246-83df859d849d?w=1200&q=80') center/cover;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 3px solid #ffd700;
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
         }
     </style>
 </head>
 <body>
-    <a href="/products" class="back-link">← Back to Products</a>
-    
-    <div class="product-detail">
-        {% if product %}
-            <h2>{{ product[1] }}</h2>
-            <p style="color: #6c757d;">Product ID: {{ product[0] }}</p>
-            <p style="font-size: 18px; line-height: 1.6;">{{ product[2] }}</p>
-            
-            {% if hidden %}
-            <div class="alert">
-                <h3>⚠️ INTERNAL PRODUCT DETECTED</h3>
-                <p><strong>Access Level:</strong> Vendor Only</p>
-                <p>This product is restricted to internal vendor operations. Unauthorized access is logged.</p>
-                <p>If you're seeing this, your session has been flagged for vendor privileges.</p>
-                <a href="/upload" class="btn">→ Access Vendor Upload Interface</a>
-            </div>
+    <div class="container">
+        <a href="/products" class="back-link">⚓ ← Back to Cargo Hold</a>
+        
+        <div class="product-detail">
+            {% if product %}
+                <h2 style="text-align: center; font-size: 32px;">{{ product[1] }}</h2>
+                <p style="color: #6c757d; text-align: center; margin: 10px 0;">Cargo ID: #{{ product[0] }}</p>
+                <p style="font-size: 18px; line-height: 1.8; margin: 20px 0;">{{ product[2] }}</p>
+                
+                {% if hidden %}
+                <div class="treasure-image"></div>
+                <div class="siren-alert">
+                    <h3 style="text-align: center; font-size: 28px; margin-bottom: 15px;">🧜‍♀️ SIREN'S TREASURE REVEALED 🧜‍♀️</h3>
+                    <p><strong>⚠️ Officers' Contraband Detected</strong></p>
+                    <p style="margin: 15px 0;">You've discovered cargo hidden from the manifest. This crate is classified for quartermaster access only. The Sirens have marked your session...</p>
+                    <p style="font-style: italic; color: #856404; font-size: 15px;">"The net is cast, sailor. You're entangled now. The smuggler's channel awaits those who dare venture deeper into treacherous waters..."</p>
+                    <a href="/upload" class="btn">🎣 → Enter Smuggler's Network</a>
+                </div>
+                {% endif %}
+            {% else %}
+                <h2 style="text-align: center;">Cargo Not Found</h2>
+                <p style="text-align: center;">This cargo does not exist in manifest or has been lost at sea.</p>
             {% endif %}
-        {% else %}
-            <h2>Product Not Found</h2>
-            <p>The requested product does not exist or has been removed.</p>
-        {% endif %}
+        </div>
     </div>
     
     <script>
-        console.log("[StoreX] Product detail loaded");
+        console.log("[Whitecap Bay] Cargo inspection complete");
         {% if hidden %}
-        console.log("[StoreX] ⚠️ VENDOR-ONLY PRODUCT ACCESSED");
-        console.log("[StoreX] Session escalated to vendor level");
+        console.log("[Whitecap Bay] ⚠️ OFFICERS' CONTRABAND ACCESSED");
+        console.log("[Whitecap Bay] The Sirens have noticed you...");
         {% endif %}
     </script>
 </body>

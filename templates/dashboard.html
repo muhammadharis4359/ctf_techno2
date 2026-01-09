@@ -1,115 +1,219 @@
-<!-- templates/dashboard.html -->
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>StoreX Dashboard</title>
+    <title>Whitecap Bay - Captain's Deck</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
-            font-family: Arial, sans-serif;
-            max-width: 900px;
-            margin: 0 auto;
+            font-family: 'Georgia', serif;
+            min-height: 100vh;
+            background: url('https://images.unsplash.com/photo-1559825481-12a05cc00344?w=1920&q=80') center/cover fixed;
+            position: relative;
             padding: 20px;
-            background: #f8f9fa;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(10,77,104,0.85) 0%, rgba(30,58,82,0.9) 100%);
+            z-index: 1;
+        }
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+            margin: 0 auto;
         }
         .header {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 30px;
+            border-radius: 15px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border: 3px solid #2c7da0;
+            color: #0a4d68;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #2c7da0, #ffd700, #2c7da0);
+        }
+        .ship-banner {
+            width: 100%;
+            height: 200px;
+            background: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&q=80') center/cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #2c7da0;
+        }
+        h1 {
+            margin: 15px 0 10px;
+            color: #0a4d68;
         }
         .nav {
-            background: #007bff;
-            padding: 15px;
-            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(44,125,160,0.95) 0%, rgba(10,77,104,0.95) 100%);
+            padding: 20px;
+            border-radius: 12px;
             margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
         }
         .nav a {
-            color: white;
+            color: #e8f4f8;
             text-decoration: none;
-            margin-right: 20px;
+            margin-right: 25px;
             font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: inline-block;
         }
         .nav a:hover {
-            text-decoration: underline;
+            color: #ffd700;
+            transform: translateY(-2px);
         }
         .content {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.98);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border: 3px solid #2c7da0;
+            color: #0a4d68;
         }
         .stage-indicator {
-            background: #28a745;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
             color: white;
-            padding: 10px;
-            border-radius: 4px;
-            margin-bottom: 15px;
-        }
-        .restricted {
-            color: #6c757d;
-            font-style: italic;
-        }
-        .unlocked {
-            color: #28a745;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
             font-weight: bold;
+            box-shadow: 0 4px 12px rgba(40,167,69,0.3);
+        }
+        .siren-image {
+            width: 100%;
+            height: 250px;
+            background: url('https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=1200&q=80') center/cover;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 3px solid #2c7da0;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            padding: 15px;
+            margin: 10px 0;
+            background: linear-gradient(90deg, #f0f8ff 0%, #e1f0f7 100%);
+            border-radius: 8px;
+            border-left: 5px solid #2c7da0;
+            transition: all 0.3s;
+        }
+        li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(44,125,160,0.2);
+        }
+        .hint-box, .siren-warning {
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 2px solid;
+        }
+        .hint-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffe8a1 100%);
+            border-color: #ffc107;
+            color: #856404;
+        }
+        .siren-warning {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        .wave-divider {
+            text-align: center;
+            font-size: 24px;
+            color: #2c7da0;
+            margin: 20px 0;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>🏪 StoreX Internal Dashboard</h1>
-        <p>Welcome, {{ session.get('email', 'Employee') }}</p>
-    </div>
-    
-    <div class="nav">
-        <a href="/products">Products</a>
-        <a href="/dashboard">Dashboard</a>
-        {% if session.get('internal_sync') %}
-        <a href="/otp">OTP Verification</a>
-        {% endif %}
-        <a href="/logout" style="float: right;">Logout</a>
-    </div>
-    
-    <div class="content">
-        <div class="stage-indicator">
-            Stage {{ stage }} / 4 - Keep exploring!
+    <div class="container">
+        <div class="header">
+            <div class="ship-banner"></div>
+            <h1>⚓ Captain's Deck - Whitecap Bay ⚓</h1>
+            <p style="color: #2c7da0;">Welcome aboard, {{ session.get('email', 'Sailor') }}</p>
         </div>
         
-        <h2>System Status</h2>
-        <ul>
-            <li>Orders Management: <span class="restricted">Restricted</span></li>
-            <li>Financial Reports: <span class="restricted">Restricted</span></li>
-            <li>Product Catalog: <span class="unlocked">✓ Available</span></li>
-            <li>Vendor Portal: <span class="restricted">Restricted</span></li>
-            {% if session.get('idor_found') %}
-            <li>Vendor Upload: <span class="unlocked">✓ Unlocked</span> - <a href="/upload">Access</a></li>
-            {% endif %}
+        <div class="nav">
+            <a href="/products">📦 Cargo Hold</a>
+            <a href="/dashboard">🗺️ Navigation</a>
             {% if session.get('internal_sync') %}
-            <li>OTP Module: <span class="unlocked">✓ Active</span> - <a href="/otp">Verify</a></li>
+            <a href="/otp">🔐 Treasure Vault</a>
             {% endif %}
-        </ul>
+            <a href="/logout" style="float: right;">⚓ Abandon Ship</a>
+        </div>
         
-        {% if stage == 1 %}
-        <div style="background: #fff3cd; padding: 15px; border-radius: 4px; margin-top: 20px;">
-            <strong>💡 Next Step:</strong> Explore the product catalog. Some items might be hidden from the regular interface.
+        <div class="content">
+            <div class="stage-indicator">
+                🧭 Navigation Stage {{ stage }} / 4 - The Sirens are watching... 🧜‍♀️
+            </div>
+            
+            <div class="siren-image"></div>
+            
+            <div class="wave-divider">〰️ 🌊 〰️</div>
+            
+            <h2>⛵ Ship's Manifest</h2>
+            <ul>
+                <li>📋 Crew Assignments: <span style="color:#6c757d;font-style:italic;">Captain's Eyes Only</span></li>
+                <li>💰 Treasure Records: <span style="color:#6c757d;font-style:italic;">Locked in Vault</span></li>
+                <li>📦 Cargo Inventory: <span style="color:#28a745;font-weight:bold;">✓ Accessible</span></li>
+                <li>🗝️ Officers' Quarters: <span style="color:#6c757d;font-style:italic;">Restricted Access</span></li>
+                {% if session.get('idor_found') %}
+                <li>🎣 Smuggler's Cache: <span style="color:#28a745;font-weight:bold;">✓ Discovered</span> - <a href="/upload">Access</a></li>
+                {% endif %}
+                {% if session.get('internal_sync') %}
+                <li>💎 Ancient Vault: <span style="color:#28a745;font-weight:bold;">✓ Unlocked</span> - <a href="/otp">Enter</a></li>
+                {% endif %}
+            </ul>
+            
+            <div class="wave-divider">〰️ 🌊 〰️</div>
+            
+            {% if stage == 1 %}
+            <div class="hint-box">
+                <strong>🧜‍♀️ Siren's Whisper:</strong> "Beautiful on the surface, deadly underneath... Not all cargo is meant to be seen. Some treasures hide in plain sight, numbered but invisible..."
+            </div>
+            {% elif stage == 2 %}
+            <div class="siren-warning">
+                <strong>⚠️ Officers' Territory Breached!</strong><br>
+                You've discovered restricted cargo. The smuggler's network has opened to you. Use it wisely, sailor.
+            </div>
+            {% elif stage == 3 %}
+            <div class="hint-box">
+                <strong>🗝️ Ancient Passage Revealed:</strong> The cargo sync has awakened the old vault. But beware - the Sirens guard their treasures with treacherous logic...
+            </div>
+            {% endif %}
         </div>
-        {% elif stage == 2 %}
-        <div style="background: #d1ecf1; padding: 15px; border-radius: 4px; margin-top: 20px;">
-            <strong>🔓 Vendor Access Granted:</strong> You've discovered internal resources. Use the upload interface to proceed.
-        </div>
-        {% elif stage == 3 %}
-        <div style="background: #d4edda; padding: 15px; border-radius: 4px; margin-top: 20px;">
-            <strong>⚡ Internal Sync Complete:</strong> OTP verification module is now accessible. 
-        </div>
-        {% endif %}
     </div>
     
     <script>
-        console.log("[StoreX] Dashboard v2.3.1 initialized");
-        console.log("[StoreX] Internal APIs responding on /api/*");
-        console.log("[StoreX] Legacy product endpoints still active...");
-        console.log("[StoreX] Session stage: {{ stage }}");
+        console.log("[Whitecap Bay] The Sirens are watching...");
+        console.log("[Whitecap Bay] Stage: {{ stage }}/4");
     </script>
 </body>
 </html>

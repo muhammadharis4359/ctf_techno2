@@ -1,86 +1,140 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>StoreX - Flag Captured</title>
+    <title>Whitecap Bay - Treasure Claimed!</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
-            font-family: 'Courier New', monospace;
-            max-width: 700px;
-            margin: 100px auto;
+            font-family: 'Georgia', serif;
+            min-height: 100vh;
+            background: url('https://images.unsplash.com/photo-1610375461246-83df859d849d?w=1920&q=80') center/cover fixed;
+            position: relative;
             padding: 20px;
-            background: #1a1a1a;
-            color: #00ff00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(10,25,41,0.95) 0%, rgba(26,58,82,0.97) 100%);
+            z-index: 1;
+        }
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            width: 100%;
+        }
+        .treasure-banner {
+            width: 100%;
+            height: 300px;
+            background: url('https://images.unsplash.com/photo-1610375461246-83df859d849d?w=1200&q=80') center/cover;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border: 5px solid #ffd700;
+            box-shadow: 0 10px 50px rgba(255, 215, 0, 0.8);
+            animation: glow-border 3s ease-in-out infinite;
+        }
+        @keyframes glow-border {
+            0%, 100% { box-shadow: 0 10px 50px rgba(255, 215, 0, 0.8); }
+            50% { box-shadow: 0 15px 70px rgba(255, 215, 0, 1); }
         }
         .success-box {
-            background: #0a0a0a;
-            border: 3px solid #00ff00;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0,255,0,0.3);
+            background: rgba(10, 25, 41, 0.98);
+            border: 5px solid #ffd700;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.7);
+            color: #ffd700;
         }
         h1 {
             text-align: center;
-            font-size: 36px;
-            animation: glow 2s ease-in-out infinite;
+            font-size: 48px;
+            animation: glow-text 2s ease-in-out infinite;
+            margin-bottom: 30px;
         }
-        @keyframes glow {
-            0%, 100% { text-shadow: 0 0 10px #00ff00; }
-            50% { text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00; }
+        @keyframes glow-text {
+            0%, 100% { text-shadow: 0 0 20px #ffd700, 0 0 30px #ffd700; }
+            50% { text-shadow: 0 0 30px #ffd700, 0 0 50px #ffd700, 0 0 70px #ffd700; }
         }
         .flag {
             background: #000;
-            padding: 20px;
-            border: 2px solid #00ff00;
-            border-radius: 4px;
+            padding: 30px;
+            border: 4px solid #ffd700;
+            border-radius: 12px;
             text-align: center;
             font-size: 24px;
-            margin: 30px 0;
-            letter-spacing: 2px;
+            margin: 40px 0;
+            letter-spacing: 4px;
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
         }
         .stats {
-            margin-top: 30px;
-            padding: 20px;
-            border-top: 1px solid #00ff00;
+            margin-top: 40px;
+            padding: 30px;
+            border-top: 3px solid #ffd700;
+            border-bottom: 3px solid #ffd700;
         }
         .stat-item {
-            margin: 10px 0;
+            margin: 20px 0;
+            font-size: 18px;
+            padding-left: 15px;
         }
         .congrats {
             text-align: center;
-            margin-top: 30px;
-            font-size: 14px;
-            color: #00cc00;
+            margin-top: 40px;
+            font-size: 16px;
+            color: #87ceeb;
+            line-height: 2;
         }
     </style>
 </head>
 <body>
-    <div class="success-box">
-        <h1>🎉 FLAG CAPTURED! 🎉</h1>
+    <div class="container">
+        <div class="treasure-banner"></div>
         
-        <div class="flag">
-            {{ flag }}
-        </div>
-        
-        <div class="stats">
-            <div class="stat-item">✓ SQL Injection: Bypassed authentication</div>
-            <div class="stat-item">✓ IDOR: Accessed hidden product (ID 3)</div>
-            <div class="stat-item">✓ Logic Flow: Triggered vendor upload sync</div>
-            <div class="stat-item">✓ Business Logic Flaw: OTP parameter removal</div>
-        </div>
-        
-        <div class="congrats">
-            <p><strong>Congratulations!</strong></p>
-            <p>You successfully exploited a chained authentication bypass through:</p>
-            <p>1. SQL injection → 2. IDOR → 3. Session escalation → 4. Logic flaw</p>
-            <p>This demonstrates the danger of trusting client-side inputs</p>
-            <p>and missing parameter validation in authentication flows.</p>
+        <div class="success-box">
+            <h1>🏴‍☠️ TREASURE CLAIMED! 🏴‍☠️</h1>
+            
+            <div class="flag">
+                {{ flag }}
+            </div>
+            
+            <div class="stats">
+                <div class="stat-item">🧜‍♀️ Stage 1: Bypassed Harbor Guards (SQL Injection)</div>
+                <div class="stat-item">🎣 Stage 2: Found Hidden Contraband (IDOR)</div>
+                <div class="stat-item">⚓ Stage 3: Triggered Smuggler's Network (Logic Flow)</div>
+                <div class="stat-item">🔱 Stage 4: Escaped the Siren's Net (Logic Flaw)</div>
+            </div>
+            
+            <div class="congrats">
+                <p style="font-size: 24px;"><strong>🎉 Congratulations, Master Sailor! 🎉</strong></p>
+                <p><em>"Beautiful on the surface, but you saw the deadly logic underneath."</em></p>
+                <br>
+                <p>You successfully navigated Whitecap Bay's treacherous waters!</p>
+                <p>The Sirens lured you with beauty, tested you with hidden treasures,</p>
+                <p>entangled you in their net, and finally tried to drown you with impossible logic.</p>
+                <br>
+                <p><strong>But you escaped by understanding what they truly feared:</strong></p>
+                <p>Not the presence of security, but its absence.</p>
+            </div>
         </div>
     </div>
     
     <script>
-        console.log("[StoreX] Flag retrieved successfully");
-        console.log("[StoreX] Challenge completed!");
-        console.log("Vulnerability chain: SQLi → IDOR → Upload → OTP Bypass");
+        console.log("[Whitecap Bay] 🎉 FLAG CAPTURED!");
+        console.log("🧜‍♀️ 'Navigate the treacherous waters without getting pulled under' - COMPLETE");
     </script>
 </body>
 </html>
