@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Whitecap Bay - Cargo Hold</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -10,11 +11,11 @@
             box-sizing: border-box;
         }
         body {
-            font-family: 'Georgia', serif;
+            font-family: 'Cinzel', serif;
             min-height: 100vh;
-            background: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920&q=80') center/cover fixed;
-            position: relative;
+            background: url('/static/images/b.jpg') center/cover fixed;
             padding: 20px;
+            color: #e0f7fa;
         }
         body::before {
             content: '';
@@ -23,7 +24,9 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(10,77,104,0.88) 0%, rgba(30,58,82,0.92) 100%);
+            background: linear-gradient(180deg, 
+                rgba(10,25,41,0.9) 0%, 
+                rgba(13,47,71,0.88) 100%);
             z-index: 1;
         }
         .container {
@@ -34,79 +37,80 @@
         }
         .cargo-header {
             width: 100%;
-            height: 200px;
-            background: url('https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=1200&q=80') center/cover;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            border: 3px solid #2c7da0;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            height: 220px;
+            background: url('/static/images/a.jpg') center/cover;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            border: 3px solid rgba(72,209,204,0.5);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.7);
         }
         .product-list {
-            background: rgba(255, 255, 255, 0.98);
+            background: linear-gradient(135deg, 
+                rgba(10,25,41,0.95) 0%, 
+                rgba(13,35,55,0.95) 100%);
             padding: 35px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            border: 3px solid #2c7da0;
-            color: #0a4d68;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.7),
+                        0 0 40px rgba(72,209,204,0.2);
+            border: 3px solid rgba(72,209,204,0.4);
+            backdrop-filter: blur(10px);
+        }
+        h2 {
+            font-family: 'Pirata One', cursive;
+            text-align: center;
+            color: #48d1cc;
+            font-size: 42px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(72,209,204,0.7);
         }
         .product-item {
             padding: 20px;
-            margin: 12px 0;
-            border: 2px solid #b8d4e8;
-            border-radius: 10px;
+            margin: 15px 0;
+            background: linear-gradient(90deg, 
+                rgba(72,209,204,0.15) 0%, 
+                rgba(72,209,204,0.05) 100%);
+            border-radius: 12px;
+            border-left: 5px solid #48d1cc;
             transition: all 0.3s;
-            border-left: 5px solid #2c7da0;
-            background: linear-gradient(90deg, #f0f8ff 0%, #ffffff 100%);
         }
         .product-item:hover {
             transform: translateX(10px);
-            box-shadow: 0 6px 20px rgba(44,125,160,0.3);
-            border-left-width: 8px;
+            box-shadow: 0 6px 20px rgba(72,209,204,0.4);
         }
         .product-item a {
-            color: #0a4d68;
+            color: #48d1cc;
             text-decoration: none;
             font-size: 20px;
             font-weight: bold;
+            text-shadow: 0 0 10px rgba(72,209,204,0.5);
         }
         .back-link {
             display: inline-block;
-            margin-bottom: 20px;
-            color: #e8f4f8;
+            margin-bottom: 25px;
+            color: #48d1cc;
             text-decoration: none;
             font-weight: bold;
             font-size: 16px;
             padding: 12px 25px;
-            background: linear-gradient(135deg, rgba(44,125,160,0.9) 0%, rgba(10,77,104,0.9) 100%);
+            background: rgba(72,209,204,0.2);
             border-radius: 10px;
+            border: 2px solid rgba(72,209,204,0.5);
             transition: all 0.3s;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
         .back-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(44,125,160,0.5);
+            background: rgba(72,209,204,0.3);
+            box-shadow: 0 4px 15px rgba(72,209,204,0.5);
         }
         .siren-hint {
-            background: linear-gradient(135deg, #fff3cd 0%, #ffe8a1 100%);
+            background: linear-gradient(135deg, 
+                rgba(72,209,204,0.2) 0%, 
+                rgba(32,178,170,0.15) 100%);
             padding: 25px;
-            border-radius: 12px;
+            border-radius: 15px;
             margin-top: 25px;
-            border: 3px solid #ffc107;
-            color: #856404;
-            box-shadow: 0 4px 12px rgba(255,193,7,0.3);
-        }
-        .net-image {
-            width: 100%;
-            height: 180px;
-            background: url('https://images.unsplash.com/photo-1544551763-92d0d6e42dd8?w=1200&q=80') center/cover;
-            border-radius: 10px;
-            margin: 20px 0;
-            border: 2px solid #2c7da0;
-        }
-        h2 {
-            text-align: center;
-            color: #0a4d68;
-            margin-bottom: 10px;
+            border: 2px solid rgba(72,209,204,0.5);
+            color: #7fb3d5;
+            box-shadow: 0 4px 20px rgba(72,209,204,0.3);
         }
     </style>
 </head>
