@@ -52,7 +52,7 @@ def init_db():
     # Add products
     cur.execute("INSERT INTO products VALUES (1, 'Laptop Pro', 'High-performance laptop', 1, 0)")
     cur.execute("INSERT INTO products VALUES (2, 'Wireless Mouse', 'Ergonomic mouse', 1, 0)")
-    cur.execute("INSERT INTO products VALUES (3, 'Secret Vendor Kit', 'Internal use only - Vendor provisioning tools', 0, 1)")
+    cur.execute("INSERT INTO products VALUES (34, 'Secret Vendor Kit', 'Internal use only - Vendor provisioning tools', 0, 1)")
     cur.execute("INSERT INTO products VALUES (4, 'USB Drive', 'Fast storage', 1, 0)")
     
     conn.commit()
@@ -250,4 +250,5 @@ def server_error(e):
 
 # ---------------- RUN ----------------
 if __name__ == "__main__":
+
     app.run(debug=True, host="0.0.0.0", port=5000)
